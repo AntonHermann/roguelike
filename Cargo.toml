@@ -1,0 +1,15 @@
+[package]
+authors = ["anton"]
+edition = "2018"
+name = "roguelike"
+version = "0.1.0"
+[dependencies]
+failure = "*"
+fern = "*"
+log = "*"
+termion = "*"
+
+[dependencies.roguelike_lib]
+path = "roguelike_lib"
+
+[workspace]

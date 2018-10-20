@@ -1,0 +1,11 @@
+[package]
+authors = ["anton"]
+edition = "2018"
+name = "roguelike_lib"
+version = "0.1.0"
+[dependencies]
+failure = "*"
+rand = "*"
+arrayref = "*"
+sha2 = "*"
+log = "*"
