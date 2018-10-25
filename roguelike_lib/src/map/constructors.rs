@@ -3,6 +3,12 @@
 use super::Map;
 
 // === CONSTRUCTORS === //
+impl<T: Default + Clone> Map<T> {
+    /// Create a new Map, initializing each field by cloning the default
+    pub fn new(width: i32, height: i32) -> Self {
+        Self::new_from_item(width, height, Default::default())
+    }
+}
 impl<T: Default> Map<T> {
     /// Create a new Map, initializing each field by using the default value
     pub fn new_from_default(width: i32, height: i32) -> Self {

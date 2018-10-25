@@ -1,30 +1,23 @@
 use std::fmt;
 
-#[derive(Debug, Clone)]
-pub struct Tile {
-    ty: TileType,
-}
-
-#[derive(Debug, Clone, Copy)]
-pub enum TileType {
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Tile {
     Floor,
     Wall,
 }
 
 impl Tile {
-    pub const FLOOR: Self = Self { ty: TileType::Floor };
-    pub const WALL: Self = Self { ty: TileType::Wall };
-    pub fn ch(&self) -> &str {
-        match self.ty {
-            TileType::Floor => " ",
-            TileType::Wall => "|",
+    pub fn ch(&self) -> char {
+        match self {
+            Tile::Floor => '.',
+            Tile::Wall  => '#',
         }
     }
     /// Can someone walk on this tile?
     pub fn passable(&self) -> bool {
-        match self.ty {
-            TileType::Floor => true,
-            TileType::Wall  => false,
+        match self {
+            Tile::Floor => true,
+            Tile::Wall  => false,
         }
     }
 }

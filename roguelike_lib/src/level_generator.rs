@@ -18,7 +18,7 @@ pub struct LevelGenerator {
 impl LevelGenerator {
     pub fn new(width: i32, height: i32, rng: rand::StdRng) -> Self {
         Self {
-            map: Map::new_from_item(width, height, Tile::WALL),
+            map: Map::new_from_item(width, height, Tile::Wall),
             rooms: Vec::new(),
             rng,
         }
@@ -84,7 +84,13 @@ impl LevelGenerator {
         }
     }
     fn add_room(&mut self, room: Room) {
-        self.map.fill_rect(room.x, room.y, room.width, room.height, &Tile::FLOOR);
+        self.map.fill_rect(
+            room.x,
+            room.y,
+            room.width,
+            room.height,
+            &Tile::Floor
+        );
         self.rooms.push(room);
     }
     pub fn rooms(&self) -> &Vec<Room> {

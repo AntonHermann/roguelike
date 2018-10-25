@@ -1,6 +1,9 @@
 use crate::*;
 use crate::level_generator::LevelGenerator;
 
+pub const SCREEN_WIDTH:  i32 = 80;
+pub const SCREEN_HEIGHT: i32 = 24;
+
 #[derive(Debug)]
 pub struct Level {
     map: Map<Tile>,
@@ -8,8 +11,9 @@ pub struct Level {
 }
 impl Level {
     pub fn generate_new(seed: &str) -> Self {
-        let rng = crate::rand::create_rng(seed);
-        let mut level_gen = LevelGenerator::new(48, 30, rng);
+        let rng = crate::rand_utils::create_rng(seed);
+        let mut level_gen = LevelGenerator::new(
+            SCREEN_WIDTH, SCREEN_HEIGHT, rng);
         level_gen.place_rooms();
         let player = Some({
             let rooms = level_gen.rooms();
@@ -17,6 +21,19 @@ impl Level {
             room.center()
         });
         let map = level_gen.get_map();
+
+        Self {
+            map,
+            player,
+        }
+    }
+    pub fn generate_blank() -> Self {
+        let width  = SCREEN_WIDTH;
+        let height = SCREEN_HEIGHT;
+        let player = Some((width/2, height/2));
+        let map = Map::new_with_border(
+            width, height, Tile::Floor, Tile::Wall
+        );
 
         Self {
             map,

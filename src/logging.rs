@@ -2,7 +2,7 @@ use fern;
 use log;
 use crate::Result;
 
-pub fn init_logger() -> Result<()> {
+pub fn init() -> Result<()> {
     fern::Dispatch::new()
         .format(|out, message, record| {
             out.finish(format_args!(
